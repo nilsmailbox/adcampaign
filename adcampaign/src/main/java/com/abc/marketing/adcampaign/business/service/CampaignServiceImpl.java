@@ -32,7 +32,7 @@ public class CampaignServiceImpl implements CampaignService{
 	
 	public AdInfoVo getActiveAd(String partnerId) {
 		
-		return VoEntityConversionUtil.convertToVo(storage.get(partnerId));
+		return VoEntityConversionUtil.convertToVo(storage.getActiveAd(partnerId));
 		
 	}
 	

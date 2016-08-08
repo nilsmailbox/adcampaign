@@ -100,7 +100,7 @@ public class StorageImplTest {
 		
 		((Map<String, AdInfoEntity>)Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME)).put(adInfoEntity.getPartner_id(), adInfoEntity);
 
-		assertSame(adInfoEntity, storage.get(adInfoEntity.getPartner_id()));
+		assertSame(adInfoEntity, storage.getActiveAd(adInfoEntity.getPartner_id()));
 
 	}
 	
@@ -113,7 +113,7 @@ public class StorageImplTest {
 		Whitebox.setInternalState(adInfoEntity,ENTITY_EXPIRATION_VAR_NAME , CalendarUtil.getPastDate());
 		((Map<String, AdInfoEntity>)Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME)).put(adInfoEntity.getPartner_id(), adInfoEntity);
 
-		assertNull(storage.get(adInfoEntity.getPartner_id()));
+		assertNull(storage.getActiveAd(adInfoEntity.getPartner_id()));
 
 	}
 	

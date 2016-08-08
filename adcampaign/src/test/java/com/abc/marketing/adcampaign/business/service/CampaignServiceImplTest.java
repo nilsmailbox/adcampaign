@@ -76,7 +76,7 @@ public class CampaignServiceImplTest {
 	public void testGetActiveAd() {
 		
 		StorageImpl storageMock = PowerMock.createMock(StorageImpl.class);
-		EasyMock.expect(storageMock.get(ADD_INFO_ENTITY.getPartner_id())).andReturn(ADD_INFO_ENTITY);
+		EasyMock.expect(storageMock.getActiveAd(ADD_INFO_ENTITY.getPartner_id())).andReturn(ADD_INFO_ENTITY);
 		
 		PowerMock.mockStatic(VoEntityConversionUtil.class);
 		EasyMock.expect(VoEntityConversionUtil.convertToVo(ADD_INFO_ENTITY)).andReturn(ADD_INFO_VO);

@@ -11,6 +11,6 @@ public interface Storage {
 	
 	public Collection<AdInfoEntity> getAll();
 	
-	public AdInfoEntity get(String partnerId);
+	public AdInfoEntity getActiveAd(String partnerId);
 
 }
