@@ -9,10 +9,16 @@ import com.abc.marketing.adcampaign.vo.AdInfoVo;
 public class VoEntityConversionUtil {
 	
 	public static AdInfoEntity convertToEntity(AdInfoVo adInfoVo){
+		if(adInfoVo == null){
+			return null;
+		}
 		return new AdInfoEntity(adInfoVo.getPartner_id(), adInfoVo.getDuration(), adInfoVo.getAd_content());
 	}
 	
 	public static AdInfoVo convertToVo(AdInfoEntity adInfoEntity){
+		if(adInfoEntity == null){
+			return null;
+		}
 		return new AdInfoVo(adInfoEntity.getPartner_id(), adInfoEntity.getDuration(), adInfoEntity.getAd_content());
 	}
 	
