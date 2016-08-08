@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.abc.marketing.adcampaign.business.service.exceptions.ActiveAdExists;
 import com.abc.marketing.adcampaign.business.service.utilities.VoEntityConversionUtil;
 import com.abc.marketing.adcampaign.storage.Storage;
+import com.abc.marketing.adcampaign.storage.StorageImpl;
 import com.abc.marketing.adcampaign.storage.exceptions.ActiveAdExistsStorageException;
 import com.abc.marketing.adcampaign.vo.AdInfoVo;
 

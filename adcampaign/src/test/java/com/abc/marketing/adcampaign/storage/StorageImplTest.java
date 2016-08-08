@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StorageTest {
+public class StorageImplTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -41,14 +41,14 @@ public class StorageTest {
 	
 	@Test
 	public void testStorage() {
-		Storage storage = new Storage();
+		StorageImpl storage = new StorageImpl();
 		assertTrue(Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME) instanceof HashMap);
 	}
 
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testSave() {
-		Storage storage = new Storage();
+		StorageImpl storage = new StorageImpl();
 		AdInfoEntity adInfoEntity = new AdInfoEntity(PARTNER_ID_VAL, DURATION_VAL, CONTENT_VAL);
 		try {
 			storage.save(adInfoEntity);
@@ -61,7 +61,7 @@ public class StorageTest {
 	
 	@Test
 	public void testSave_Entity_Already_Exists() {
-		Storage storage = new Storage();
+		StorageImpl storage = new StorageImpl();
 		AdInfoEntity adInfoEntity = new AdInfoEntity(PARTNER_ID_VAL, DURATION_VAL, CONTENT_VAL);
 		try {
 			storage.save(adInfoEntity);
@@ -80,7 +80,7 @@ public class StorageTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testGetAll() {
-		Storage storage = new Storage();
+		StorageImpl storage = new StorageImpl();
 		List<AdInfoEntity> adInfoEntityList = new ArrayList<AdInfoEntity>();
 		adInfoEntityList.addAll(((Map<String, AdInfoEntity>)Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME)).values());
 		assertEquals(storage.getAll(), adInfoEntityList);
@@ -92,7 +92,7 @@ public class StorageTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testGet() {
-		Storage storage = new Storage();
+		StorageImpl storage = new StorageImpl();
 		AdInfoEntity adInfoEntity = new AdInfoEntity(PARTNER_ID_VAL, DURATION_VAL, CONTENT_VAL);
 		
 		((Map<String, AdInfoEntity>)Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME)).put(adInfoEntity.getPartner_id(), adInfoEntity);

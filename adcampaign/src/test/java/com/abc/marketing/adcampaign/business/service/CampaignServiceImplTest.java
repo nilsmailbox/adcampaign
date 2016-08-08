@@ -16,7 +16,7 @@ import org.powermock.reflect.Whitebox;
 
 import com.abc.marketing.adcampaign.business.service.exceptions.ActiveAdExists;
 import com.abc.marketing.adcampaign.business.service.utilities.VoEntityConversionUtil;
-import com.abc.marketing.adcampaign.storage.Storage;
+import com.abc.marketing.adcampaign.storage.StorageImpl;
 import com.abc.marketing.adcampaign.storage.entities.AdInfoEntity;
 import com.abc.marketing.adcampaign.storage.exceptions.ActiveAdExistsStorageException;
 import com.abc.marketing.adcampaign.vo.AdInfoVo;
@@ -26,7 +26,7 @@ import static test.utilities.TestConstants.AdInfoVo.*;
 
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ VoEntityConversionUtil.class, Storage.class})
+@PrepareForTest({ VoEntityConversionUtil.class, StorageImpl.class})
 public class CampaignServiceImplTest {
 
 	@BeforeClass
@@ -52,7 +52,7 @@ public class CampaignServiceImplTest {
 		PowerMock.mockStatic(VoEntityConversionUtil.class);
 		EasyMock.expect(VoEntityConversionUtil.convertToEntity(ADD_INFO_VO)).andReturn(ADD_INFO_ENTITY);
 		
-		Storage storageMock = PowerMock.createMock(Storage.class);
+		StorageImpl storageMock = PowerMock.createMock(StorageImpl.class);
 		try {
 			storageMock.save(ADD_INFO_ENTITY);
 		} catch (ActiveAdExistsStorageException e1) {
@@ -75,7 +75,7 @@ public class CampaignServiceImplTest {
 	@Test
 	public void testGetActiveAd() {
 		
-		Storage storageMock = PowerMock.createMock(Storage.class);
+		StorageImpl storageMock = PowerMock.createMock(StorageImpl.class);
 		EasyMock.expect(storageMock.get(ADD_INFO_ENTITY.getPartner_id())).andReturn(ADD_INFO_ENTITY);
 		
 		PowerMock.mockStatic(VoEntityConversionUtil.class);
