@@ -7,7 +7,13 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+
+import org.jboss.resteasy.util.HttpHeaderNames;
 
 import com.abc.marketing.adcampaign.business.service.CampaignService;
 import com.abc.marketing.adcampaign.business.service.exceptions.ActiveAdExists;
@@ -26,9 +32,9 @@ public class RestCampaignService {
 	
 	@POST
 	@Path("/ad")
-	@Consumes("application/json")
-	@Produces("application/json")
-	public Response createUpdateCampaign(AdInfoVo adInfoVo) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createUpdateCampaign(AdInfoVo adInfoVo, @Context UriInfo uriInfo) {
 
 		
 		try{
@@ -38,13 +44,17 @@ public class RestCampaignService {
 		}catch(ActiveAdExists aae){
 			return Response.status(409).build();
 		}
-		return Response.status(201).build();
+		
+		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+        builder.path(adInfoVo.getPartner_id());
+		
+		return Response.created(builder.build()).build();
 	}
 	
 	
 	@GET
 	@Path("/ad/{partnerId}")
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCampaign(@PathParam("partnerId") String partnerId) {
 		
 		AdInfoVo currentAd;
