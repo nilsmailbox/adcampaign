@@ -38,9 +38,7 @@ public class VoEntityConversionUtilTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		if(DURATION_VAL <-1){
-			DURATION_VAL = DURATION_VAL *-1;
-		}
+		
 	}
 
 	@AfterClass
