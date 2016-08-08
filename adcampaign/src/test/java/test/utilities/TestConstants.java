@@ -1,5 +1,6 @@
 package test.utilities;
 
+import java.util.Calendar;
 import java.util.Random;
 import java.util.UUID;
 
@@ -31,13 +32,22 @@ public class TestConstants {
 		public static final String PARTNER_ID_VAL = UUID.randomUUID().toString();
 		public static final String CONTENT_VAL = UUID.randomUUID().toString();
 		public static int aRandom = new Random(Integer.MAX_VALUE).nextInt();
-		public static int DURATION_VAL = aRandom < 0? aRandom*-1 : aRandom;
+		public static final int DURATION_VAL = aRandom != 0 ? Math.abs(aRandom) : 1;
 		
 
 	}
 	
 	public static class StorageEntity{
 		public static final String AD_STORAGE_VAR_NAME = "adStorage";
+	}
+	
+	
+	public static class CalendarUtil{
+		public static Calendar getPastDate(){
+			final Calendar pastExpirationDate = Calendar.getInstance();
+			pastExpirationDate.add(Calendar.SECOND, -1);
+			return pastExpirationDate;
+		}
 	}
 
 }

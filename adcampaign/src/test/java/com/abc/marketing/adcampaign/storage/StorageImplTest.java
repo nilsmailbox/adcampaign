@@ -14,8 +14,11 @@ import com.abc.marketing.adcampaign.storage.exceptions.ActiveAdExistsStorageExce
 
 import static test.utilities.TestConstants.StorageEntity.*;
 import static test.utilities.TestConstants.AdInfoValue.*;
+import static test.utilities.TestConstants.AdInfoEntity.*;
+import static test.utilities.TestConstants.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -98,6 +101,19 @@ public class StorageImplTest {
 		((Map<String, AdInfoEntity>)Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME)).put(adInfoEntity.getPartner_id(), adInfoEntity);
 
 		assertSame(adInfoEntity, storage.get(adInfoEntity.getPartner_id()));
+
+	}
+	
+	@Test
+	@SuppressWarnings("unchecked")
+	public void testGet_Expired() {
+		StorageImpl storage = new StorageImpl();
+		AdInfoEntity adInfoEntity = new AdInfoEntity(PARTNER_ID_VAL, 1, CONTENT_VAL);
+		
+		Whitebox.setInternalState(adInfoEntity,ENTITY_EXPIRATION_VAR_NAME , CalendarUtil.getPastDate());
+		((Map<String, AdInfoEntity>)Whitebox.getInternalState(storage, AD_STORAGE_VAR_NAME)).put(adInfoEntity.getPartner_id(), adInfoEntity);
+
+		assertNull(storage.get(adInfoEntity.getPartner_id()));
 
 	}
 	
