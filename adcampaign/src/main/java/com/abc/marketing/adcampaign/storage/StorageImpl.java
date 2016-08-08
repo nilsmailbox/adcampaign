@@ -47,6 +47,7 @@ public class StorageImpl implements Storage {
 	
 	
 	public AdInfoEntity get(String partnerId){
-		return adStorage.get(partnerId);
+		AdInfoEntity adInfoEntity = adStorage.get(partnerId);
+		return (adInfoEntity == null || adInfoEntity.hasExpired()) ? null : adInfoEntity ;
 	}
 }
