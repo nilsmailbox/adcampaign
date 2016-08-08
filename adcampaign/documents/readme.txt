@@ -1,5 +1,5 @@
 To Run this application
-	deploy adcampaign.war on j2ee application server running with java 1.8 and access following are the URLS.
+	deploy adcampaign.war on j2ee application server running with java 1.6 or higher and access following are the URLS.
 		To create new ad -POST at http://localhost:8081/adcampaign/rest/ad
 		To view a partner ad -GET at http://localhost:8081/adcampaign/rest/ad/{partner_id}
 		To view all ads - GET at  http://localhost:8081/adcampaign/rest/ads
